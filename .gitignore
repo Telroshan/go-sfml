@@ -29,16 +29,7 @@ _testmain.go
 *.sw*
 *.un*
 
-app.conf.json
-docker.conf.json
-
-target/
-zlunch/
-yarn.lock
-
-./vendor/
-./glide.lock
-
 coverage*.out
 
-protobuf/java/
+/SFML/
+/CSFML/
