@@ -1,7 +1,7 @@
- %module "window"
+ %module "audio"
  %{
  /* Includes the header in the wrapper code */
-#include "../Audio.h"
+#include <SFML/Audio.h>
  %}
 
  /* Parse the header file to generate wrappers */

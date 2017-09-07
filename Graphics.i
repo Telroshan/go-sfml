@@ -1,7 +1,7 @@
  %module "graphics"
  %{
  /* Includes the header in the wrapper code */
-#include "../Graphics.h"
+#include <SFML/Graphics.h>
  %}
 
  /* Parse the header file to generate wrappers */

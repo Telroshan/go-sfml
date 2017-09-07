@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"runtime"
 
-	graphics "github.com/teh-cmc/go-sfml/CSFML/include/SFML/Graphics"
-	window "github.com/teh-cmc/go-sfml/CSFML/include/SFML/Window"
+	"github.com/teh-cmc/go-sfml/graphics"
+	"github.com/teh-cmc/go-sfml/window"
 )
 
 const title = "some window title"

@@ -1,7 +1,7 @@
  %module "window"
  %{
  /* Includes the header in the wrapper code */
- #include "../Window.h"
+ #include <SFML/Window.h>
  %}
 
  /* Parse the header file to generate wrappers */
