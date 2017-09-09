@@ -15,7 +15,7 @@ for m in "${SFML_MODULES[@]}"; do
 	mkdir -p "$PWD/$mm"
 
 	echo -n "building bindings for SFML's $m module..."
-	cp "$m.i" "$PWD/$CSFML/include/$SFML/$m/$m.i"
+	cp "$PWD/interfaces/$m.i" "$PWD/$CSFML/include/$SFML/$m/$m.i"
 	./swig/swig -go -cgo -intgosize 64 -I"$PWD/$CSFML/include" "$PWD/$CSFML/include/$SFML/$m/$m.i" > /dev/null 2>&1
 	cp "$PWD/$CSFML/include/$SFML/$m/$mm.go" "$PWD/$CSFML/include/$SFML/$m/${m}_wrap.c" "$PWD/$mm"
 	echo " OK."
