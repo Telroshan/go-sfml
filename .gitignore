@@ -33,5 +33,6 @@ coverage*.out
 
 /SFML/
 /CSFML/
+/swig/
 
 go-sfml
