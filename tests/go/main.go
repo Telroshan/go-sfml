@@ -1,30 +1,37 @@
 package main
 
 import (
-	"fmt"
 	"runtime"
 
 	"github.com/teh-cmc/go-sfml/graphics"
 	"github.com/teh-cmc/go-sfml/window"
 )
 
-const title = "some window title"
+func init() { runtime.LockOSThread() }
 
 func main() {
-	runtime.LockOSThread()
-
 	vm := window.NewSfVideoMode()
 	vm.SetWidth(800)
 	vm.SetHeight(600)
+	vm.SetBitsPerPixel(32)
 	cs := window.NewSfContextSettings()
-	w := window.SfWindow_create(vm, title, 32, cs)
+	cs.SetDepthBits(32)
+	w := window.SfWindow_create(
+		vm, "My window",
+		uint(window.SfResize|window.SfClose),
+		window.NewSfContextSettings())
 
-	e := window.NewSfEvent()
-
+openLoop:
 	for window.SfWindow_isOpen(w) > 0 {
+		e := window.NewSfEvent()
 		for window.SfWindow_pollEvent(w, e) > 0 {
-			fmt.Println(e)
+			if e.GetXtype() == window.SfEventType(window.SfEvtClosed) {
+				break openLoop
+			}
 		}
 		graphics.SfRenderWindow_clear(w, graphics.GetSfBlack())
+		graphics.SfRenderWindow_display(w)
 	}
+
+	window.SfWindow_destroy(w)
 }
