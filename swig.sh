@@ -8,7 +8,7 @@ SFML_VERSION="2.4.0"
 CSFML="CSFML"
 CSFML_VERSION="2.4"
 
-SFML_MODULES=(Audio Graphics Window)
+SFML_MODULES=(Audio Graphics System Window)
 
 for m in "${SFML_MODULES[@]}"; do
 	mm=$(echo $m | tr '[:upper:]' '[:lower:]')
