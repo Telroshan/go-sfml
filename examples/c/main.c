@@ -21,6 +21,7 @@ int main() {
         }
         /* Clear the screen */
         sfRenderWindow_clear(window, sfBlack);
+        sfRenderWindow_display(window);
     }
 
     /* Cleanup resources */
