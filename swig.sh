@@ -2,26 +2,27 @@
 
 set -e
 
-SFML="SFML"
-SFML_VERSION="2.4.0"
+SWIG="swig"
+SWIG_VERSION="rel-3.0.12"
 
-CSFML="CSFML"
-CSFML_VERSION="2.4"
-
-SFML_MODULES=(Audio Graphics System Window)
-
-for m in "${SFML_MODULES[@]}"; do
-	mm=$(echo $m | tr '[:upper:]' '[:lower:]')
-
-	mkdir -p "$PWD/$mm"
-
-	echo -n "building bindings for SFML's $m module..."
-	cp "$m.i" "$PWD/$CSFML/include/$SFML/$m/$m.i"
-	swig -go -cgo -intgosize 64 -I"$PWD/$CSFML/include" "$PWD/$CSFML/include/$SFML/$m/$m.i" > /dev/null 2>&1
-	cp "$PWD/$CSFML/include/$SFML/$m/$mm.go" "$PWD/$CSFML/include/$SFML/$m/${m}_wrap.c" "$PWD/$mm"
+clone_and_checkout() {
+	if [ ! -d "$1" ]; then
+		echo -n "cloning $1 v$2..."
+		git clone git@github.com:swig/$1.git > /dev/null 2>&1
+		echo " OK."
+	else
+		echo "$1 has already been cloned, skipping."
+	fi
+	echo -n "checking out to $1's '$2' tag..."
+	git -C $1 checkout $2 > /dev/null 2>&1
 	echo " OK."
+}
+clone_and_checkout "$SWIG" "$SWIG_VERSION"
 
-	echo -n "compiling go package for SFML's $m module..."
-	CGO_LDFLAGS="-L$PWD/CSFML/lib -lcsfml-$mm" CGO_CFLAGS="-I$PWD/$CSFML/include" go install "./$mm" > /dev/null 2>&1
-	echo " OK."
-done
+echo -n "building $SWIG:$SWIG_VERSION..."
+cd $SWIG
+./autogen.sh > /dev/null 2>&1
+./configure > /dev/null 2>&1
+make > /dev/null 2>&1
+cd - > /dev/null 2>&1
+echo " OK."
