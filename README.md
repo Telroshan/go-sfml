@@ -34,9 +34,12 @@ Feel free to open issues and/or PRs if you're running into problems on other pla
 
 ## Installation
 
+Assuming both libraries and their header files are correctly installed and available through the standard paths of your system:
 ```
 $ go get -u gopkg.in/teh-cmc/go-sfml.v24/...
 ```
+
+That's it!
 
 ## Usage
 
