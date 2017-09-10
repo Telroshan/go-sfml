@@ -18,6 +18,7 @@ for m in "${SFML_MODULES[@]}"; do
 	cp "$PWD/interfaces/$m.i" "$PWD/$CSFML/include/$SFML/$m/$m.i"
 	./swig/swig -go -cgo -intgosize 64 -I"$PWD/$CSFML/include" "$PWD/$CSFML/include/$SFML/$m/$m.i" > /dev/null 2>&1
 	cp "$PWD/$CSFML/include/$SFML/$m/$mm.go" "$PWD/$CSFML/include/$SFML/$m/${m}_wrap.c" "$PWD/$mm"
+	gsed -i "/import \"C\"/i \/\/ #cgo LDFLAGS: -lcsfml-$mm" "$PWD/$m/$mm.go"
 	echo " OK."
 
 	echo -n "compiling go package for SFML's $m module..."

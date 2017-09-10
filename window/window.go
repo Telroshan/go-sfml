@@ -420,6 +420,7 @@ extern void _wrap_sfWindow_display_window_1e57a301c1676321(uintptr_t arg1);
 extern uintptr_t _wrap_sfWindow_getSystemHandle_window_1e57a301c1676321(uintptr_t arg1);
 #undef intgo
 */
+// #cgo LDFLAGS: -lcsfml-window
 import "C"
 
 import "unsafe"

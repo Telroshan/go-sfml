@@ -170,6 +170,7 @@ extern swig_intgo _wrap_sfSoundStream_getLoop_audio_9111d99a8d6f1374(uintptr_t a
 extern uintptr_t _wrap_sfSoundStream_getPlayingOffset_audio_9111d99a8d6f1374(uintptr_t arg1);
 #undef intgo
 */
+// #cgo LDFLAGS: -lcsfml-audio
 import "C"
 
 import "unsafe"

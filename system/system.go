@@ -58,6 +58,7 @@ extern uintptr_t _wrap_new_sfVector3f_system_ff5467e5aa4f17e8(void);
 extern void _wrap_delete_sfVector3f_system_ff5467e5aa4f17e8(uintptr_t arg1);
 #undef intgo
 */
+// #cgo LDFLAGS: -lcsfml-system
 import "C"
 
 import "unsafe"

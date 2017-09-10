@@ -723,6 +723,7 @@ extern void _wrap_sfView_rotate_graphics_23698568018502eb(uintptr_t arg1, float 
 extern void _wrap_sfView_zoom_graphics_23698568018502eb(uintptr_t arg1, float arg2);
 #undef intgo
 */
+// #cgo LDFLAGS: -lcsfml-graphics
 import "C"
 
 import "unsafe"
