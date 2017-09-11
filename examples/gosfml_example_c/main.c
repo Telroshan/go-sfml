@@ -20,7 +20,7 @@ int main() {
                 sfRenderWindow_close(window);
         }
         /* Clear the screen */
-        sfRenderWindow_clear(window, sfBlack);
+        sfRenderWindow_clear(window, sfRed);
         sfRenderWindow_display(window);
     }
 

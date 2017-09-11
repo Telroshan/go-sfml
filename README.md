@@ -71,23 +71,19 @@ func init() { runtime.LockOSThread() }
 
 func main() {
 	vm := window.NewSfVideoMode()
+	defer window.DeleteSfVideoMode(vm)
 	vm.SetWidth(800)
 	vm.SetHeight(600)
 	vm.SetBitsPerPixel(32)
 
 	/* Create the main window */
-	var ev = window.NewSfEvent()
-	w := window.SfWindow_create(
-		vm, "SFML window",
-		uint(window.SfResize|window.SfClose),
-		window.NewSfContextSettings())
-	if w == nil {
-		panic("failed to create window")
-	}
-
-	/* Cleanup resources (on exit) */
+	cs := window.NewSfContextSettings()
+	defer window.DeleteSfContextSettings(cs)
+	w := graphics.SfRenderWindow_create(vm, "SFML window", uint(window.SfResize|window.SfClose), cs)
 	defer window.SfWindow_destroy(w)
-	defer window.Swig_free(ev.Swigcptr())
+
+	ev := window.NewSfEvent()
+	defer window.DeleteSfEvent(ev)
 
 	/* Start the game loop */
 	for window.SfWindow_isOpen(w) > 0 {
@@ -98,7 +94,7 @@ func main() {
 				return
 			}
 		}
-		graphics.SfRenderWindow_clear(w, graphics.GetSfBlack())
+		graphics.SfRenderWindow_clear(w, graphics.GetSfRed())
 		graphics.SfRenderWindow_display(w)
 	}
 }
@@ -128,7 +124,7 @@ int main() {
                 sfRenderWindow_close(window);
         }
         /* Clear the screen */
-        sfRenderWindow_clear(window, sfBlack);
+        sfRenderWindow_clear(window, sfRed);
         sfRenderWindow_display(window);
     }
 
