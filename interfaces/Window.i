@@ -6,6 +6,8 @@
 
 %define linux %enddef
 
+%rename type evType;
+
 %include "SFML/Config.h"
 
 %include "SFML/Window/Export.h"
