@@ -112,7 +112,7 @@ import (
 &#8594; You probably didn't copy CSFML DLLs next to your executable, as mentioned in step 5
 
 ### Bat script
-Alternatively to steps 3 to 5 from the [previous section](#installation), you could use a bat script to automate that process for you, such as [the one in the basic window example](https://github.com/Telroshan/go-sfml/blob/main/examples/basic_window/build.bat)
+Alternatively to steps 3 to 5 from the [previous section](#installation), you could use a bat script to automate that process for you, such as [the one in the basic window example](https://github.com/Telroshan/go-sfml/blob/master/examples/basic_window/build.bat)
 ```bat
 @ECHO OFF
 
@@ -233,9 +233,9 @@ int main() {
 ```
 
 #### Other examples
-You'll find other examples in the [examples folder](https://github.com/Telroshan/go-sfml/tree/main/examples)
-1. [Basic window](https://github.com/Telroshan/go-sfml/tree/main/examples/basic_window) : just the same as above
-2. [Tennis](https://github.com/Telroshan/go-sfml/tree/main/examples/tennis) : go version of [SFML's tennis example](https://github.com/SFML/SFML/tree/master/examples/tennis)
+You'll find other examples in the [examples folder](https://github.com/Telroshan/go-sfml/tree/master/examples)
+1. [Basic window](https://github.com/Telroshan/go-sfml/tree/master/examples/basic_window) : just the same as above
+2. [Tennis](https://github.com/Telroshan/go-sfml/tree/master/examples/tennis) : go version of [SFML's tennis example](https://github.com/SFML/SFML/tree/master/examples/tennis)
 
 Feel free to open PRs if you have any example you'd like to share!
 
