@@ -12,8 +12,8 @@
 %define macintosh %enddef
 %define Macintosh %enddef
 %define CSFML_SYSTEM_MACOS %enddef
-%include <SFML/Config.h>
 
+%include <SFML/Config.h>
 %include "Export.h"
 
 %include "Vector2.h"

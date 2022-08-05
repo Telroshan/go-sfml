@@ -1,6 +1,7 @@
  %module "window"
  %{
  /* Includes the header in the wrapper code */
+ #include <SFML/System.h>
  #include <SFML/Window.h>
  %}
 
@@ -12,11 +13,18 @@
 %define macintosh %enddef
 %define Macintosh %enddef
 %define CSFML_SYSTEM_MACOS %enddef
-%include <SFML/Config.h>
 
+%rename type evType;
+
+%include <SFML/Config.h>
 %include "Export.h"
 
-%include "Event.h"
+%include <SFML/System/Vector2.h>
+%include <SFML/System/Vector3.h>
+
+%include "Clipboard.h"
+%include "Context.h"
+%include "Cursor.h"
 %include "Event.h"
 %include "Joystick.h"
 %include "JoystickIdentification.h"

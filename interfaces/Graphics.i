@@ -1,7 +1,8 @@
  %module "graphics"
  %{
  /* Includes the header in the wrapper code */
-#include <SFML/Graphics.h>
+ #include <SFML/System.h>
+ #include <SFML/Graphics.h>
  %}
 
  /* Parse the header file to generate wrappers */
@@ -13,9 +14,23 @@
 %define Macintosh %enddef
 %define CSFML_SYSTEM_MACOS %enddef
 
-%include <SFML/Config.h>
+%ignore sfRenderWindow_capture;
+%ignore sfShader_setFloatParameter;
+%ignore sfShader_setFloat2Parameter;
+%ignore sfShader_setFloat3Parameter;
+%ignore sfShader_setFloat4Parameter;
+%ignore sfShader_setVector2Parameter;
+%ignore sfShader_setVector3Parameter;
+%ignore sfShader_setColorParameter;
+%ignore sfShader_setTransformParameter;
+%ignore sfShader_setTextureParameter;
+%ignore sfShader_setCurrentTextureParameter;
 
+%include <SFML/Config.h>
 %include "Export.h"
+
+%include <SFML/System/Vector2.h>
+%include <SFML/System/Vector3.h>
 
 %include "BlendMode.h"
 %include "CircleShape.h"
@@ -42,4 +57,5 @@
 %include "Types.h"
 %include "Vertex.h"
 %include "VertexArray.h"
+%include "VertexBuffer.h"
 %include "View.h"

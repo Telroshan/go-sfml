@@ -14,7 +14,6 @@
 %define CSFML_SYSTEM_MACOS %enddef
 
 %include <SFML/Config.h>
-
 %include "Export.h"
 
 %include "Listener.h"

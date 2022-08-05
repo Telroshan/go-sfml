@@ -12,16 +12,22 @@ SFML_MODULES=(Audio Graphics System Window)
 for m in "${SFML_MODULES[@]}"; do
 	mm=$(echo $m | tr '[:upper:]' '[:lower:]')
 
+	echo -n "Fixing missing library links to SFML..."
+	patchelf --set-rpath "$PWD/$SFML/lib" "$CSFML/lib/libcsfml-$mm.so"
+	echo " OK."
+
 	mkdir -p "$PWD/$mm"
 
 	echo -n "building bindings for SFML's $m module..."
 	cp "$PWD/interfaces/$m.i" "$PWD/$CSFML/include/$SFML/$m/$m.i"
-	./swig/swig -go -cgo -intgosize 64 -I"$PWD/$CSFML/include" "$PWD/$CSFML/include/$SFML/$m/$m.i" > /dev/null 2>&1
+	swig -go -cgo -intgosize 64 -I"$PWD/$CSFML/include" "$PWD/$CSFML/include/$SFML/$m/$m.i"
 	cp "$PWD/$CSFML/include/$SFML/$m/$mm.go" "$PWD/$CSFML/include/$SFML/$m/${m}_wrap.c" "$PWD/$mm"
-	gsed -i "/import \"C\"/i \/\/ #cgo LDFLAGS: -lcsfml-$mm" "$PWD/$m/$mm.go"
+	sed -i "/import \"C\"/i \/\/ #cgo LDFLAGS: -lcsfml-$mm" "$PWD/$m/$mm.go"
 	echo " OK."
 
 	echo -n "compiling go package for SFML's $m module..."
-	CGO_LDFLAGS="-L$PWD/CSFML/lib -lcsfml-$mm" CGO_CFLAGS="-I$PWD/$CSFML/include" go install "./$mm" > /dev/null 2>&1
+	GO111MODULE=off CGO_LDFLAGS="-L$PWD/CSFML/lib -lcsfml-$mm" CGO_CFLAGS="-I$PWD/$CSFML/include" go install "./$mm"
 	echo " OK."
 done
+
+echo "Build completed."
