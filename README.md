@@ -20,6 +20,7 @@ Hence they should be fairly easy to maintain & keep in sync with future releases
     - [Get the module](#get-the-module)
     - [Troubleshooting](#troubleshooting)
       - [Error: `SFML/Window.h: No such file or directory`](#error-sfmlwindowh-no-such-file-or-directory)
+      - [Error: `imports github.com/telroshan/go-sfml/v2/window: build constraints exclude all Go files in [...]`](#error-imports-githubcomtelroshango-sfmlv2window-build-constraints-exclude-all-go-files-in-)
       - [Error: `csfml-window-2.dll could not be found`](#error-csfml-window-2dll-could-not-be-found)
   - [Bat script](#bat-script)
   - [API](#api)
@@ -108,6 +109,12 @@ import (
 &#8594; Make sure you didn't invert the paths between the two variables. `CGO_CFLAGS` should point to the `include` folder whereas `CGO_LDFLAGS` should point to the libs
 
 &#8594; Make sure you made no typo with the syntax of -I and -L for those variables
+##### Error: `imports github.com/telroshan/go-sfml/v2/window: build constraints exclude all Go files in [...]`
+&#8594; You need to define the environment variable [`CGO_ENABLED`](https://pkg.go.dev/cmd/cgo). As the doc says:
+> The cgo tool is enabled by default for native builds on systems where it is expected to work. It is disabled by default when cross-compiling. You can control this by setting the CGO_ENABLED environment variable when running the go tool: set it to 1 to enable the use of cgo, and to 0 to disable it.
+```
+set CGO_ENABLED=1
+```
 ##### Error: `csfml-window-2.dll could not be found`
 &#8594; You probably didn't copy CSFML DLLs next to your executable, as mentioned in step 5
 
