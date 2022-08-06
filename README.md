@@ -189,7 +189,7 @@ func main() {
 		/* Process events */
 		for window.SfWindow_pollEvent(w, ev) > 0 {
 			/* Close window: exit */
-			if ev.GetXtype() == window.SfEventType(window.SfEvtClosed) {
+			if ev.GetEvType() == window.SfEventType(window.SfEvtClosed) {
 				return
 			}
 		}
